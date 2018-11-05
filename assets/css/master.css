@@ -8,3 +8,8 @@
 body {
 	background-color: #fff;
 }
+
+#front-page-carousel {
+	height: 400px;
+	overflow: hidden;
+}
