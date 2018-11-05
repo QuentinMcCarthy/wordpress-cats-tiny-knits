@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-	<div class="row">
+	<div class="row mt-2">
 		<div class="col">
 			<h1><?php bloginfo( 'name' ); wp_title( '-', true, 'left'); ?></h1>
 		</div>
@@ -9,15 +9,20 @@
 		<div class="col">
 			<?php if ( have_posts() ): ?>
 				<?php while ( have_posts() ): the_post(); ?>
-					<div class="row">
+					<div class="row mt-1 border-top pt-1">
 						<?php if ( has_post_thumbnail() ): ?>
 							<div class="col-4 pr-0">
 								<?php the_post_thumbnail( 'medium', ['class' => 'img-fluid img-thumbnail'] ); ?>
 							</div>
+
+							<?php $contentClass = 'col pl-0' ?>
+						<?php else: ?>
+							<?php $contentClass = 'col'; ?>
 						<?php endif; ?>
 
-						<div class="col pl-0">
-							<?php the_content(); ?>
+						<div class="<?php echo $contentClass ?>">
+							<h3><?php the_title(); ?></h3>
+							<?php the_excerpt(); ?>
 						</div>
 					</div>
 				<?php endwhile; ?>
