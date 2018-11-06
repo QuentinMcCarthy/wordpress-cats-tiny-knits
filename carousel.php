@@ -2,81 +2,66 @@
 	/* Template Name: Carousel */
 ?>
 
-<div id="front-page-carousel" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
-		<?php
-			// The iterator has to be initialised outside of the while loop
-			$iterator = 0;
-		?>
-		<?php while ( have_posts() ): the_post(); ?>
-			<?php
-				$args = array(
-					'post_type'      => 'attachment',
-					'numberposts'    => -1,
-					'orderby'        => 'menu_order',
-					'order'          => 'ASC',
-					'post_mime_type' => 'image',
-					'post_status'    => null,
-					'post_parent'    => $post->ID,
-				);
+<?php
+	$args = array(
+		'post_type' => 'carousel',
+		'order'     => 'ASC',
+		'orderby'   => 'date',
+	);
 
-				$attachments = get_posts( $args );
+	$all_carousel_images = new WP_Query($args);
+?>
 
-				if ( $attachments ):
-					foreach ( $attachments as $attachment ):
-						if ( $iterator == 0 ) {
-							$class = 'active';
-						} else {
-							$class = '';
-						}
-			?>
+<?php if ( $all_carousel_images->have_posts() ): ?>
+	<div id="front-page-carousel" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<?php $iterator = 0; ?>
+			<?php while ( $all_carousel_images->have_posts() ): $all_carousel_images->the_post(); ?>
+				<?php
+					if ( $iterator == 0 ) {
+						$class = 'active';
+					} else {
+						$class = '';
+					}
+				?>
+
+				<?php if ( has_post_thumbnail() ): ?>
 					<li data-target="#front-page-carousel" data-slide-to="<?php echo $iterator; ?>" class="<?php echo $class; ?>"></li>
+
 					<?php $iterator++; ?>
-				<?php endforeach; ?>
-			<?php endif; ?>
-		<?php endwhile; ?>
-	</ol>
-	<div class="carousel-inner">
-		<?php
-			// The iterator has to be initialised outside of the while loop
-			$iterator = 0;
-		?>
-		<?php while ( have_posts() ): the_post(); ?>
-			<?php
-				$args = array(
-					'post_type'      => 'attachment',
-					'numberposts'    => -1,
-					'orderby'        => 'menu_order',
-					'order'          => 'ASC',
-					'post_mime_type' => 'image',
-					'post_status'    => null,
-					'post_parent'    => $post->ID,
-				);
+				<?php endif; ?>
+			<?php endwhile; ?>
+		</ol>
 
-				$attachments = get_posts( $args );
+		<div class="carousel-inner">
+			<?php $iterator = 0; ?>
+			<?php while ( $all_carousel_images->have_posts() ): $all_carousel_images->the_post(); ?>
+				<?php
+					if ( $iterator == 0 ) {
+						$class = 'carousel-item active';
+					} else {
+						$class = 'carousel-item';
+					}
+				?>
 
-				if ( $attachments ):
-					foreach ( $attachments as $attachment ):
-						if ( $iterator == 0 ) {
-							$class = 'carousel-item active';
-						} else {
-							$class = 'carousel-item';
-						}
-			?>
+				<?php if ( has_post_thumbnail() ): ?>
 					<div class="<?php echo $class ?>">
-						<?php echo wp_get_attachment_image( $attachment->ID, 'full', "", array( 'class' => 'd-block w-100') ); ?>
+						<div class="carousel-image" style="background-image: url('<?php the_post_thumbnail_url(); ?>')"></div>
 					</div>
+
 					<?php $iterator++; ?>
-				<?php endforeach; ?>
-			<?php endif; ?>
-		<?php endwhile; ?>
+				<?php endif; ?>
+
+				<?php $iterator++; ?>
+			<?php endwhile; ?>
+		</div>
+		<a class="carousel-control-prev" href="#front-page-carousel" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#front-page-carousel" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
 	</div>
-	<a class="carousel-control-prev" href="#front-page-carousel" role="button" data-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-	<a class="carousel-control-next" href="#front-page-carousel" role="button" data-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
-</div>
+<?php endif; ?>

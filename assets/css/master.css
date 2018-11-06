@@ -10,6 +10,13 @@ body {
 }
 
 #front-page-carousel {
-	height: 400px;
+	height: fit-content;
 	overflow: hidden;
+}
+
+.carousel-image {
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
