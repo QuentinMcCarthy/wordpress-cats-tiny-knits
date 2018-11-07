@@ -5,7 +5,6 @@
 		3.0:- Init
 			3.1:- Menus
 			3.2:- Post Thumbnails
-		4.0:- Sidebars
 	*/
 
 
@@ -79,16 +78,3 @@
 	}
 
 	add_action( 'init', 'custom_theme_init' );
-
-	// 4.0:- Sidebars
-	add_action( 'widgets_init', function() {
-		register_sidebar(array(
-			'id'            => 'sidebar-main',
-			'name'          => __( 'Main Sidebar', 'theme-slug' ),
-			'description'   => __( 'Main sidebar appears on all pages', 'theme-slug' ),
-			'before_widget' => '<div id="%1$s" class="custom-widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h3 class="widget-title">',
-			'after_title'   => '</h3>',
-		));
-	});
