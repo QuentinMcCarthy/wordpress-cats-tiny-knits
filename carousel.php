@@ -4,7 +4,7 @@
 
 <?php
 	$args = array(
-		'post_type' => 'carousel',
+		'post_type' => 'carousel_images',
 		'order'     => 'ASC',
 		'orderby'   => 'date',
 	);

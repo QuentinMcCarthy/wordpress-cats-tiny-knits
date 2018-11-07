@@ -74,7 +74,7 @@
 			'query_var'           => true,
 		);
 
-		register_post_type( 'carousel', $carousel_images_args );
+		register_post_type( 'carousel_images', $carousel_images_args );
 
 		// 3.2.2:- Shop Form Inputs
 		$shop_inputs_labels = array(
@@ -111,7 +111,7 @@
 			'query_var'           => true,
 		);
 
-		register_post_type( 'shop', $shop_inputs_args );
+		register_post_type( 'shop_inputs', $shop_inputs_args );
 
 
 		// 3.3:- Post Thumbnails
