@@ -4,15 +4,11 @@
 		2.0:- Stylesheets and Scripts
 		3.0:- Init
 			3.1:- Menus
-<<<<<<< HEAD
 			3.2:- Custom Post Types
 				3.2.1:- Carousel Images
 				3.2.2:- Shop Form Inputs
 			3.3:- Post Thumbnails
 		4.0:- Sidebars
-=======
-			3.2:- Post Thumbnails
->>>>>>> 2b68ced3254eaf61155fb6f6837aecde20472f35
 	*/
 
 
