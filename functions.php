@@ -4,7 +4,10 @@
 		2.0:- Stylesheets and Scripts
 		3.0:- Init
 			3.1:- Menus
-			3.2:- Post Thumbnails
+			3.2:- Custom Post Types
+				3.2.1:- Carousel Images
+				3.2.2:- Shop Form Inputs
+			3.3:- Post Thumbnails
 		4.0:- Sidebars
 	*/
 
@@ -36,19 +39,19 @@
 
 		// 3.2:- Custom Post Types
 
-		// 3.2.2:- Carousel Images
+		// 3.2.1:- Carousel Images
 		$carousel_images_labels = array(
-			'name'               => _x( 'Carousel Images', 'Post type name', '18wdwu02theme' ),
-			'singular_name'      => _x( 'Carousel Image', 'Post type singular name', '18wdwu02theme' ),
-			'add_new_item'       => _x( 'Add New Carousel Image', 'Adding new carousel image', '18wdwu02theme' ),
-			'edit_item'          => _x( 'Edit Carousel Image', 'Editing carousel image', '18wdwu02theme' ),
-			'new_item'           => _x( 'New Carousel Image', 'New carousel image', '18wdwu02theme' ),
-			'view_item'          => _x( 'View Carousel Image', 'Viewing carousel image', '18wdwu02theme' ),
-			'view_items'         => _x( 'View Carousel Images', 'Viewing carousel images', '18wdwu02theme' ),
-			'search_items'       => _x( 'Search Carousel Images', 'Searching carousel images', '18wdwu02theme' ),
-			'not_found'          => _x( 'No Carousel Images found', 'No carousel images found', '18wdwu02theme' ),
-			'not_found_in_trash' => _x( 'No Carousel Images found in Trash', 'No Carousel Images found in Trash', '18wdwu02theme' ),
-			'all_items'          => _x( 'All Carousel Images', 'All carousel images', '18wdwu02theme' ),
+			'name'               => _x( 'Carousel Images', 'Post type name', 'catstinyknits' ),
+			'singular_name'      => _x( 'Carousel Image', 'Post type singular name', 'catstinyknits' ),
+			'add_new_item'       => _x( 'Add New Carousel Image', 'Adding new carousel image', 'catstinyknits' ),
+			'edit_item'          => _x( 'Edit Carousel Image', 'Editing carousel image', 'catstinyknits' ),
+			'new_item'           => _x( 'New Carousel Image', 'New carousel image', 'catstinyknits' ),
+			'view_item'          => _x( 'View Carousel Image', 'Viewing carousel image', 'catstinyknits' ),
+			'view_items'         => _x( 'View Carousel Images', 'Viewing carousel images', 'catstinyknits' ),
+			'search_items'       => _x( 'Search Carousel Images', 'Searching carousel images', 'catstinyknits' ),
+			'not_found'          => _x( 'No Carousel Images found', 'No carousel images found', 'catstinyknits' ),
+			'not_found_in_trash' => _x( 'No Carousel Images found in Trash', 'No Carousel Images found in Trash', 'catstinyknits' ),
+			'all_items'          => _x( 'All Carousel Images', 'All carousel images', 'catstinyknits' ),
 		);
 
 		$carousel_images_supports = array(
@@ -65,7 +68,7 @@
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'show_in_nav_menus'   => false,
-			'menu_position'       => 57,
+			'menu_position'       => 25,
 			'menu_icon'           => 'dashicons-images-alt2',
 			'supports'            => $carousel_images_supports,
 			'query_var'           => true,
@@ -73,8 +76,45 @@
 
 		register_post_type( 'carousel', $carousel_images_args );
 
+		// 3.2.2:- Shop Form Inputs
+		$shop_inputs_labels = array(
+			'name'               => _x( 'Shop Inputs', 'Post type name', 'catstinyknits' ),
+			'singular_name'      => _x( 'Shop Option', 'Post type singular name', 'catstinyknits' ),
+			'add_new_item'       => _x( 'Add New Shop Option', 'Adding new shop option', 'catstinyknits' ),
+			'edit_item'          => _x( 'Edit Shop Option', 'Editing shop option', 'catstinyknits' ),
+			'new_item'           => _x( 'New Shop Option', 'New shop option', 'catstinyknits' ),
+			'view_item'          => _x( 'View Shop Option', 'Viewing shop option', 'catstinyknits' ),
+			'view_items'         => _x( 'View Shop Inputs', 'Viewing shop inputs', 'catstinyknits' ),
+			'search_items'       => _x( 'Search Shop Inputs', 'Searching shop inputs', 'catstinyknits' ),
+			'not_found'          => _x( 'No Shop Inputs found', 'No shop inputs found', 'catstinyknits' ),
+			'not_found_in_trash' => _x( 'No Shop Inputs found in Trash', 'No Shop Inputs found in Trash', 'catstinyknits' ),
+			'all_items'          => _x( 'All Shop Inputs', 'All shop inputs', 'catstinyknits' ),
+		);
 
-		// 3.2:- Theme Support
+		$shop_inputs_supports = array(
+			'title',
+			'custom-fields',
+		);
+
+		$shop_inputs_args = array(
+			'labels'              => $shop_inputs_labels,
+			'description'         => 'Inputs for the shop form',
+			'public'              => true,
+			'hierarchical'        => true,
+			'exclude_from_search' => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => false,
+			'menu_position'       => 26,
+			'menu_icon'           => 'dashicons-feedback',
+			'supports'            => $shop_inputs_supports,
+			'query_var'           => true,
+		);
+
+		register_post_type( 'shop', $shop_inputs_args );
+
+
+		// 3.3:- Post Thumbnails
 		add_theme_support( 'post-thumbnails' );
 	}
 
